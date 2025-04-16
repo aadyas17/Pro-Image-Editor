@@ -1,6 +1,6 @@
-# Image Editor
+#Pro Image Editor
 
-**Image Editor** is a web-based application for seamless image editing. It allows users to upload, edit, enhance, and export images with powerful features like filters, text overlays, compression, and background removal.
+**Pro Image Editor** is a web-based application for seamless image editing. It allows users to upload, edit, enhance, and export images with powerful features like filters, text overlays, compression, and background removal.
 
 ---
 
@@ -22,9 +22,9 @@
 ---
 
 ## 📸 Screenshot
-<img src="https://github.com/user-attachments/assets/44fd4f97-d44f-49a9-b0f1-946aeaa7702c" width="300"/>
-<img src="https://github.com/user-attachments/assets/c61cd791-c821-4204-8be7-74e32df1260c" width="300"/>
-<img src="https://github.com/user-attachments/assets/de3088b1-89a2-492c-bd74-d8689df2bf22" width="300"/>
+<img src="https://github.com/user-attachments/assets/44fd4f97-d44f-49a9-b0f1-946aeaa7702c" width="500"/>
+<img src="https://github.com/user-attachments/assets/c61cd791-c821-4204-8be7-74e32df1260c" width="500"/>
+<img src="https://github.com/user-attachments/assets/de3088b1-89a2-492c-bd74-d8689df2bf22" width="500"/>
 
 ---
 
