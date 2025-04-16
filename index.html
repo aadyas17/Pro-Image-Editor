@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pro Image Editor</title>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+  <!-- JS Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+
+<body class="dark-mode">
+  <!-- Navbar -->
+  <nav class="navbar animate__animated animate__fadeIn">
+    <div class="nav-logo"><i class="fas fa-crop-alt"></i> ProEditor</div>
+    <ul class="nav-links">
+      <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="#editor"><i class="fas fa-edit"></i> Editor</a></li>
+      <li><a href="#features"><i class="fas fa-star"></i> Features</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+    </button>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero animate__animated animate__fadeIn">
+    <img src="image.png" alt="Editor Banner" class="pulse-animation" />
+    <div class="hero-text">
+      <h1>Welcome to Pro Image Editor</h1>
+      <p>Upload, edit, enhance and export your images seamlessly.</p>
+      <a href="#editor" class="cta-button animate__animated animate__pulse animate__infinite animate__slower">
+        <i class="fas fa-arrow-down"></i> Start Editing
+      </a>
+    </div>
+  </section>
+
+  <!-- Editor Section -->
+  <section class="editor-container animate__animated animate__fadeInUp" id="editor">
+    <div class="canvas-container">
+      <h2 class="upload-title">
+        <i class="fas fa-image"></i> Image Editor Workspace
+      </h2>
+      
+      <div class="upload-area">
+        <input type="file" id="upload" accept="image/*" />
+        <label for="upload" class="upload-label">
+          <i class="fas fa-cloud-upload-alt"></i>
+          <span>Drag & drop or click to upload</span>
+        </label>
+      </div>
+      
+      <div class="canvas-wrapper">
+        <canvas id="canvas"></canvas>
+      </div>
+    </div>
+
+    <div class="features-panel animate__animated animate__fadeInRight">
+      <!-- Adjustments -->
+      <button class="main-btn" onclick="toggleSection('editOptions')">
+        <i class="fas fa-sliders-h"></i> Adjustments
+      </button>
+      <div id="editOptions" class="sub-controls">
+        <label>Brightness: <input type="range" id="brightnessRange" min="0" max="200" value="100" oninput="applyFilter()" /></label>
+        <label>Saturation: <input type="range" id="saturationRange" min="0" max="200" value="100" oninput="applyFilter()" /></label>
+        <label>Contrast: <input type="range" id="contrastRange" min="0" max="200" value="100" oninput="applyFilter()" /></label>
+
+        <div class="input-container">
+          <div>
+            <input type="text" id="textInput" placeholder="Enter text" />
+          </div>
+          <label>Size:
+            <input type="number" id="fontSizeInput" min="10" max="100" value="30" />
+          </label>
+        
+          <label>Family:
+            <select id="fontFamilyInput">
+              <option value="Arial">Arial</option>
+              <option value="Verdana">Verdana</option>
+              <option value="Courier New">Courier New</option>
+              <option value="Georgia">Georgia</option>
+            </select>
+          </label>
+        
+          <label>Color:
+            <input type="color" id="fontColorInput" value="#ffffff" />
+          </label>
+        
+          <button class="sub-btn" onclick="addText()">
+            <i class="fas fa-font"></i> Add Text
+          </button>
+        </div>
+      </div>
+
+      <!-- Effects -->
+      <button class="main-btn" onclick="toggleSection('effectsOptions')">
+        <i class="fas fa-magic"></i> Effects
+      </button>
+      <div id="effectsOptions" class="sub-controls">
+        <button class="sub-btn" onclick="applyEffect('grayscale')">
+          <i class="fas fa-adjust"></i> Grayscale
+        </button>
+        <button class="sub-btn" onclick="applyEffect('sepia')">
+          <i class="fas fa-image"></i> Sepia
+        </button>
+        <button class="sub-btn" onclick="applyEffect('invert')">
+          <i class="fas fa-exchange-alt"></i> Invert
+        </button>
+        <button class="sub-btn" onclick="applyEffect('blur')">
+          <i class="fas fa-low-vision"></i> Blur
+        </button>
+        <button class="sub-btn" onclick="resetImage()">
+          <i class="fas fa-undo"></i> Reset
+        </button>
+      </div>
+
+      <!-- Compress -->
+      <button class="main-btn" onclick="toggleSection('compressOptions')">
+        <i class="fas fa-compress"></i> Compress
+      </button>
+      <div id="compressOptions" class="sub-controls">
+        <label>Compression Level:
+          <input type="range" id="compressRange" min="10" max="100" value="80" />
+        </label>
+        <button class="sub-btn" onclick="compressImage()">
+          <i class="fas fa-check"></i> Apply Compression
+        </button>
+      </div>
+
+      <!-- Other Actions -->
+      <button class="main-btn" onclick="downloadImage()">
+        <i class="fas fa-download"></i> Download
+      </button>
+      <button class="main-btn" onclick="convertToPDF()">
+        <i class="fas fa-file-pdf"></i> Convert to PDF
+      </button>
+      <button class="main-btn" onclick="removeObject()">
+        <i class="fas fa-eraser"></i> Remove Background
+      </button>
+    </div>
+  </section>
+
+  <!-- Feature Section -->
+  <section class="cta-section animate__animated animate__fadeIn" id="features">
+    <h2 class="cta-heading">Powerful Image Editing Features</h2>
+    <div class="cta">
+      <div class="feature-card">
+        <i class="fas fa-sliders-h"></i>
+        <p><strong>Adjustments</strong>: Modify brightness, contrast, saturation, and more.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-magic"></i>
+        <p><strong>Effects</strong>: Apply visual filters and aesthetic enhancements.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-compress"></i>
+        <p><strong>Compress</strong>: Reduce image size without losing quality.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-download"></i>
+        <p><strong>Download</strong>: Save your edited image instantly.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-file-pdf"></i>
+        <p><strong>Convert to PDF</strong>: Turn images into downloadable PDF files.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-th"></i>
+        <p><strong>Remove Object</strong>: Precisely remove ackground from image.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <i class="fas fa-crop-alt"></i> ProEditor
+      </div>
+      <p>The professional choice for image editing</p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+      </div>
+    </div>
+    <div class="copyright">
+      &copy; 2025 ProEditor. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    // Toggle navigation for mobile
+    document.querySelector('.nav-toggle').addEventListener('click', function() {
+      document.querySelector('.nav-links').classList.toggle('show-nav');
+    });
+
+    // Toggle control sections
+    function toggleSection(id) {
+      document.getElementById(id).classList.toggle("show");
+    }
+  </script>
+</body>
+</html>
