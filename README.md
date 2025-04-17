@@ -17,7 +17,7 @@
 
 ## 🌐 Live Demo
 
-🔗 [View Pro Image Editor](image-editor-self-kappa.vercel.app)
+🔗 [View Pro Image Editor](https://image-editor-self-kappa.vercel.app) 
 
 ---
 
