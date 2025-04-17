@@ -1,8 +1,6 @@
 **Pro Image Editor**
 
 **Pro Image Editor** is a web-based application for seamless image editing. It allows users to upload, edit, enhance, and export images with powerful features like filters, text overlays, compression, and background removal.
-![GitHub last commit](https://img.shields.io/github/last-commit/aadyas17/Image-Editor)
-
 ---
 
 ## 🚀 Features
