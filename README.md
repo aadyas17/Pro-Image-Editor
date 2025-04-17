@@ -17,7 +17,7 @@
 
 ## 🌐 Live Demo
 
-🔗 [View Pro Image Editor](https://aadyas17.github.io/Image-Editor/)
+🔗 [View Pro Image Editor](image-editor-self-kappa.vercel.app)
 
 ---
 
