@@ -22,10 +22,17 @@
 ---
 
 ## 📸 Screenshot
-<img src="https://github.com/user-attachments/assets/44fd4f97-d44f-49a9-b0f1-946aeaa7702c" width="500"/>   
-<img src="https://github.com/user-attachments/assets/c61cd791-c821-4204-8be7-74e32df1260c" width="500"/>
-<br>
-<img src="https://github.com/user-attachments/assets/de3088b1-89a2-492c-bd74-d8689df2bf22" width="500"/>
+<table>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/44fd4f97-d44f-49a9-b0f1-946aeaa7702c" width="100%"/></td>
+    <td><img src="https://github.com/user-attachments/assets/c61cd791-c821-4204-8be7-74e32df1260c" width="100%"/></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center">
+      <img src="https://github.com/user-attachments/assets/de3088b1-89a2-492c-bd74-d8689df2bf22" width="500"/>
+    </td>
+  </tr>
+</table>
 
 ---
 
@@ -33,8 +40,8 @@
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/aadyas17/Image-Editor.git
-   cd Image-Editor
+   git clone https://github.com/aadyas17/Pro-Image-Editor.git
+   cd Pro-Image-Editor
    ```
 
 2. **Open `index.html` in your browser.**
