@@ -254,13 +254,11 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     window.removeObject = async () => {
         const upload = document.getElementById('upload');
-        const apiKey = 'ztsDtTS1T4iFM2bMvDyiwBVP'; // Replace with your API key
-        
         if (!upload.files[0]) {
             alert("Please upload an image first!");
             return;
         }
-        
+    
         // Show loading indicator
         const loadingEl = document.createElement('div');
         loadingEl.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Removing background...';
@@ -274,27 +272,38 @@ document.addEventListener('DOMContentLoaded', () => {
         loadingEl.style.borderRadius = '5px';
         loadingEl.style.zIndex = '9999';
         document.body.appendChild(loadingEl);
-        
-        const formData = new FormData();
-        formData.append('image_file', upload.files[0]);
-        formData.append('size', 'auto');
-        
+    
+        const file = upload.files[0];
+    
+        // Convert to Base64
+        const toBase64 = file => new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result.split(',')[1]); // Remove prefix
+            reader.onerror = error => reject(error);
+        });
+    
         try {
-            const response = await fetch('https://api.remove.bg/v1.0/removebg', {
+            const base64Image = await toBase64(file);
+    
+            const response = await fetch('/api/remove-bg', {
                 method: 'POST',
                 headers: {
-                    'X-Api-Key': apiKey,
+                    'Content-Type': 'application/json',
                 },
-                body: formData
+                body: JSON.stringify({
+                    image_file_b64: base64Image,
+                    size: 'auto'
+                })
             });
-            
+    
             if (!response.ok) {
-                throw new Error(`Error: ${response.status} ${response.statusText}`);
+                throw new Error(`Serverless function error: ${response.status} ${response.statusText}`);
             }
-            
+    
             const blob = await response.blob();
             const url = URL.createObjectURL(blob);
-            
+    
             const newImg = new Image();
             newImg.onload = () => {
                 const canvas = document.getElementById('canvas');
@@ -305,13 +314,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.body.removeChild(loadingEl);
             };
             newImg.src = url;
-            
+    
         } catch (error) {
             document.body.removeChild(loadingEl);
             alert('Error: ' + error.message);
         }
     };
-      
+    
     window.downloadImage = () => {
         if (!canvas) return;
         const link = document.createElement('a');
