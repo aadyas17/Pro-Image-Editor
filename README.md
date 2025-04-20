@@ -53,7 +53,7 @@
 1. Upload an image using the drag-and-drop interface.
 2. Use the adjustment sliders and effect buttons to edit your image.
 3. Add text, compress, or remove the background as needed.
-4. Download the edited image or export it as a PDF.
+4. Download the edited image or export it as PDF.
 
 ---
 
